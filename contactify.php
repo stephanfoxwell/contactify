@@ -97,6 +97,14 @@ class Contactify {
 				array(
 					'name'=>'instagram',
 					'label'=>'Instagram'
+				),
+				array(
+					'name'=>'linkedin',
+					'label'=>'LinkedIn'
+				),
+				array(
+					'name'=>'googleplus',
+					'label'=>'Google Plus'
 				)
 			)
 		)
