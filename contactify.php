@@ -61,6 +61,10 @@ class Contactify {
 					'label'=>'Street Address'
 				),
 				array(
+					'name'=>'suite',
+					'label'=>'Suite'
+				),
+				array(
 					'name'=>'city',
 					'label'=>'City'
 				),
