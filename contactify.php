@@ -43,6 +43,10 @@ class Contactify {
 					'label'=>'Phone'
 				),
 				array(
+					'name'=>'tollfree',
+					'label'=>'Toll-Free'
+				),
+				array(
 					'name'=>'fax',
 					'label'=>'Fax'
 				),
