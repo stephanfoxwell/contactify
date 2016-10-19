@@ -1,8 +1,8 @@
 <?php
 /*
    Plugin Name: Contactify
-   Plugin URI:
-   Description:
+   Plugin URI: https://github.com/stephansmith/contactify
+   Description: WordPress Contact Info Plugin
    Version: 1.0
    Author: Stephan Smith
    Author URI: http://stephan-smith.com
