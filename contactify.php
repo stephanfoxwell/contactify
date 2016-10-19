@@ -69,11 +69,11 @@ class Contactify {
 					'label'=>'Suite'
 				),
 				array(
-					'name'=>'city',
+					'name'=>'address_locality',
 					'label'=>'City'
 				),
 				array(
-					'name'=>'state',
+					'name'=>'address_region',
 					'label'=>'State'
 				),
 				array(
@@ -120,8 +120,8 @@ class Contactify {
 
 	public function add_plugin_page() {
 		add_menu_page(
-			'Contactify',
-			'Contactify',
+			'Contact Info',
+			'Contact Info',
 			'edit_theme_options',
 			'contactify',
 			array( $this, 'create_admin_page' ),
