@@ -15,15 +15,15 @@ class Contactify {
 	 * Holds the values to be used in the fields callbacks
 	 */
 	public $options;
-	
+
 
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 		add_action( 'admin_init', array( $this, 'page_init' ) );
 	}
-	
-	
+
+
 	public function get_contactify() {
 		return get_option( 'contactify' );
 	}
@@ -207,5 +207,80 @@ class Contactify {
 
 }
 
-if( is_admin() )
+if ( is_admin() ) {
 	$Contactify = new Contactify();
+}
+
+/*
+ * Get the formated street address
+ */
+function contactify_get_address( $schema = false, $break = false ) {
+	$contactify = get_option( 'contactify' );
+
+	$string = '';
+	if ( $schema ) {
+		$string .= '<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">';
+	}
+	if ( $contactify['street_address'] != '' ) {
+		if ( $schema ) {
+			$string .= '<span itemprop="streetAddress">';
+		}
+		$string .= $contactify['street_address'];
+		if ( $contactify['suite'] != '' ) {
+			$string .= ' ' . $contactify['suite'];
+		}
+		if ( $schema ) {
+			$string .= '</span>';
+		}
+		if ( $contactify['address_locality'] != '' || $contactify['address_region'] != '' || $contactify['postal_code'] != '' ) {
+			if ( $break ) {
+				$string .= '<br>';
+			}
+			else {
+				$string .= ' ';
+			}
+		}
+	}
+	if ( $contactify['address_locality'] != '' ) {
+		if ( $schema ) {
+			$string .= '<span itemprop="addressLocality">';
+		}
+		$string .= $contactify['address_locality'];
+		if ( $schema ) {
+			$string .= '</span>';
+		}
+		if ( $contactify['address_region'] != '' ) {
+			$string .= ', ';
+		}
+		else if ( $contactify['postal_code'] != '' ) {
+			$string .= ' ';
+		}
+	}
+	if ( $contactify['address_region'] != '' ) {
+		if ( $schema ) {
+			$string .= '<span itemprop="addressRegion">';
+		}
+		$string .= $contactify['address_region'];
+		if ( $schema ) {
+			$string .= '</span>';
+		}
+		if ( $contactify['postal_code'] != '' ) {
+			$string .= ' ';
+		}
+	}
+	if ( $contactify['postal_code'] != '' ) {
+		if ( $schema ) {
+			$string .= '<span itemprop="postalCode">';
+		}
+		$string .= $contactify['postal_code'];
+		if ( $schema ) {
+			$string .= '</span>';
+		}
+	}
+	if ( $schema ) {
+		$string .= '</span>';
+	}
+
+	return $string;
+
+}
